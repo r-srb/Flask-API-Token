@@ -1,0 +1,424 @@
+<html><head>
+<style id="qc-cmp2" data-nosnippet="">.qc-cmp2-persistent-link {cursor:pointer; position:fixed; background-color:#368BD6;padding:5px 15px; color:#FFF; display:flex; text-decoration: none;align-items:center; max-height:30px; z-index:2147483640;bottom:0; right:0;border-top-left-radius:3px;border-top-right-radius:3px;}.qc-cmp2-persistent-link img {width:16px; height:17px; margin-right:5px;}</style>
+<style type="text/css">#waldo-sticky-footer-wrapper {position: fixed; width: 100%; bottom: 0px; left: 0px; text-align: center; z-index: 9999;margin-bottom: 0 !important;}#waldo-sticky-footer-wrapper > div {position: relative; display: inline-block; margin-bottom: 0 !important;}#waldo-sticky-footer-wrapper iframe, #waldo-sticky-footer-wrapper div {margin-left: auto;margin-right: auto;}.waldo-sticky-sidebar{position: fixed; top: 10px;z-index: 90}.waldo-bfleft {position: fixed; left: 0; top: 10px;z-index:101;}.waldo-bfright {position: fixed; right: 0; top: 10px;z-index:101;}#nm-ccpa-widget {width: 400px;}#nm-ccpa-widget {position: fixed; right: 20px; z-index: 9999; margin-bottom: 15px;box-shadow: 0 3px 36px 0 rgba(0,0,0,0.3); background-color: #fff;border-radius: 10px;bottom: 20px;margin-top: 10px;font-size: 14px;}.nm-ccpa-widget-header {background: #179f84;color: #fff;padding: 20px;}.nm-ccpa-widget-header .nm-ccpa-widget-main-title {margin-bottom: 0;margin-top: 0;font-size: 16px;font-weight: bold;}.nm-ccpa-widget-body {padding: 20px;background: #fff;}.nm-ccpa-widget-body label {font-size: 16px;}.nm-ccpa-widget-submit-btn {margin-top: 15px;padding-left: 25px;}.nm-ccpa-widget-submit-btn input {background: #179f84;color: #fff;padding: 10px 20px;border-radius: 8px;border: 0;outline: 0;}.nm-ccpa-widget-submit-btn input:hover,.nm-ccpa-widget-submit-btn input:focus {cursor: pointer;}.nm-ccpa-widget-checkbox-label {font-size: 20px;}.nm-ccpa-widget-header {position: relative;}.nm-ccpa-widget-close-btn {position: absolute;right: 10px;top: 10px;}.nm-ccpa-widget-close-btn a {color: #fff;font-size: 20px;text-decoration: none;}.nm-ccpa-widget-message {padding-left: 25px;}#waldo-tag-6038 {clear: both !important;}div[class^="app_gdpr-"] a {color: #41afbb !important; text-decoration: underline !important}#waldo-close-button {position: absolute; right: 0;top: -24px; line-height: normal !important;}#waldo-close-button a {border: 1px solid rgba(0,0,0,.35) !important;padding: 3px !important;font-size: 12px !important;color: #fff !important;font-weight: bold !important;background-color: #777 !important;line-height: normal !important;}.waldo-display-unit {display: flex !important; justify-content: center !important; align-items: center !important;}</style>
+<style type="text/css"> .qc-cmp-button.qc-cmp-secondary-button:hover {    background-color: #368bd6 !important;    border-color: transparent !important;  }  .qc-cmp-button.qc-cmp-secondary-button:hover {    color: #ffffff !important;  }  .qc-cmp-button.qc-cmp-secondary-button {    color: #368bd6 !important;  }  .qc-cmp-button.qc-cmp-secondary-button {    background-color: #eee !important;    border-color: transparent !important;  } </style>
+</head>
+
+<body>
+<h1 class="page-heading">
+How to Secure a Flask REST API with JSON Web Token? </h1>
+
+
+<div class="page-advertisement">
+<div class="page-advertisement-after-post-heading">
+<center><a href="https://www.netsparker.com/scan-website-security-issues/?utm_source=geekflare&amp;utm_medium=cpc&amp;utm_campaign=article" target="_blank" rel="noopener nofollow external" data-wpel-link="external">Netsparker Web Application Security Scanner</a> - the only solution that delivers automatic verification of vulnerabilities with Proof-Based Scanning™.</center> </div>
+</div>
+
+
+<div class="post-meta">
+<div class="d-flex flex-column flex-lg-row align-items-center">
+
+<div class="post-author-avatar">
+<img alt="avatar_user_115_1583859597-96x96" src="https://geekflare.com/wp-content/uploads/2020/03/avatar_user_115_1583859597-96x96.jpeg" srcset="https://geekflare.com/wp-content/uploads/2020/03/avatar_user_115_1583859597-192x192.jpeg 2x" class="avatar avatar-96 photo" loading="lazy" width="96" height="96"> </div>
+
+<div>
+
+<div class="post-author-date">
+
+<span class="post-author-name">
+By
+
+<a class="post-author-link" href="https://geekflare.com/author/kwaku/" data-wpel-link="internal">
+
+<span class="post-author-text">
+Michael Aboagye </span>
+
+</a>
+
+</span>
+
+
+<span class="post-date">
+on January 10, 2020 </span>
+ 
+</div>
+
+
+<div class="post-category">
+
+<div class="post-category-label">
+Posted in </div>
+
+
+<ul class="post-category-list">
+
+<li class="post-category-item">
+
+<a class="post-category-link" href="https://geekflare.com/category/development/" data-wpel-link="internal">
+
+<span class="post-category-text">
+Development </span>
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+<p style="font-size: 1.6rem;margin: 2rem;">
+Geekflare is supported by our audience. We may earn affiliate commissions from buying links on this site.
+</p>
+
+
+<div class="post-content">
+
+
+
+
+
+
+
+<div class="post-content-main js-post-main-content">
+<p style="text-align: left;">Let’s learn how to secure a REST API with JSON web tokens to prevent users and third-party applications from abusing it.</p>
+<p>We will build a database service using <a href="https://www.sqlite.org/index.html" data-lasso-id="6991" data-wpel-link="external" target="_blank" rel="nofollow external noopener">SQLite</a> and allow users to access it via a REST API using HTTP methods such as POST and PUT.</p>
+<p>In addition, we will get to know why JSON web tokens is a suitable way to protect rest API instead of digest and basic authentication. Before we proceed, let’s understand the term JSON web tokens, REST API and Flask framework.</p>
+<h3>JSON Web Tokens</h3>
+<p>JSON web token, also known as <a href="https://jwt.io/" data-lasso-id="6992" data-wpel-link="external" target="_blank" rel="nofollow external noopener">JWT</a>, is the secure way of transferring random tokens between two parties or entities. JSON is usually made up of three parts as the following.</p>
+<ul>
+<li>Payload</li>
+<li>Header</li>
+<li>Signature</li>
+</ul>
+<p>JSON uses two types of structure forms when transferring data or information between two parties.</p>
+<ul>
+<li>Serialized</li>
+<li>Deserialized</li>
+</ul>
+<p>The serialized form is used when transferring data to the network through each request and response whilst the deserialized form is used when reading and writing data to the web token.</p>
+<p>In the serialized form, there are three components.</p>
+<ul>
+<li>Header</li>
+<li>Payload</li>
+<li>Signature</li>
+</ul>
+<p>The header component defines the cryptographic information about the tokens. For example:</p>
+<ul>
+<li>Is it signed or unsigned JWT?</li>
+<li>Define algorithm techniques</li>
+</ul>
+<p>The deserialized form, unlike the serialized form, contains two components.</p>
+<ul>
+<li>Payload</li>
+<li>Header</li>
+</ul>
+<h3>REST API</h3>
+<p>API (application programming interface) allows communication between two applications to retrieve or submit the data. There are two popular types of APIs – web and system API.</p>
+<p>In this article, we will only look at the web API. There are two types of web API.</p>
+<ul style="list-style-type: disc;">
+<li>Request – Response API:&nbsp; Rest, GraphQL, Remote Procedure Call (RPC)</li>
+<li>Event-Driven API:&nbsp; WebHooks, Web Sockets, HTTP Streaming</li>
+</ul>
+<p>REST API falls under the request-response category. It makes use of HTTP methods such as GET, POST, and PUT to perform API operations.</p>
+<p>A classic example is when a user sends a GET method to the web service to request for or retrieve a specific resource or a collection of resources. The server then sends back the specific resource or collection of resources back to the user who requested it.</p>
+<h3>Flask Framework</h3>
+<p>Flask is a framework based on python. It is a micro-framework used by python developers to build rest API.&nbsp; It is called a micro framework because it allows developers, for instance, to add custom authentication and any other backend system based on preferences.</p>
+<p>Let’s get it started with the implementation. My system setup is as follows.</p>
+<ul>
+<li>Ubuntu as OS</li>
+<li>Python 2.7+</li>
+<li>Postman</li>
+</ul>
+<h3>Set up a virtual environment using virtualenv</h3>
+<p>We need to set up a virtual environment to ensure that some packages will not conflict with system packages. Let’s use the <code>virtualenv</code>&nbsp;to set up a new virtual environment.</p>
+<p>Assuming you have the <code>pip</code> command available on your system, run the following command via <code>pip</code> to install.</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">pip install virtualenv</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>If you don’t have pip on your machine, then follow this <a href="https://pypi.org/project/pip/" data-lasso-id="6993" data-wpel-link="external" target="_blank" rel="nofollow external noopener">documentation</a> to install pip on your system.</p>
+<p>Next, let’s create a directory to store or hold our virtual environment. Use the <code>mkdir</code> command shown below to create a directory</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">mkdir flaskproject</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Change into the <code>flaskproject</code> directory using the following command</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">cd flaskproject</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Inside the <code>flaskproject</code> directory, use the <code>virtualenv</code> tool to create a virtual environment as shown below:</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">virtualenv flaskapi</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>After you have used the <code>virtualenv</code> tool to create the virtual environment, run the <code>cd</code> command to change into the <code>flaskapi</code> directory as the virtual environment and activate it using the command below.</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">source bin/activate</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Execute all tasks related to this project within the virtual environment.</p>
+<h3>Install packages using pip</h3>
+<p>Now it’s time to install packages such as the flask framework and PyJWT which we will use to build the rest API and other necessary packages for our API project.</p>
+<p>Create a <code>requirements.txt</code> file with the following packages.</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">Flask  
+datetime 
+uuid
+Flask-SQLAlchemy
+PyJWT</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Install them with pip.</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">pip install -r requirements.txt</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<h3>Set up a database<strong><br>
+</strong></h3>
+<p>Let’s install SQLite.</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">apt-get install sqlite3</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Create a database named the library. Inside this database, we will create two tables, namely the <code>Users</code> and <code>Authors</code> table.</p>
+<p>Users table will contain registered users. Only registered users can have access to the Authors table.</p>
+<p>Authors table will store authors’ information or details such as the name of the author, country of birth and so on submitted by the registered users.</p>
+<p>Create the database using the following command:</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">sqlite3 library.db</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>You can check whether you have successfully created the database by using the command below:</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">.databases</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Open a new terminal and execute the following in the virtual environment we created earlier.</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">touch app.py</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Paste the following code inside the file named <code>app.py</code></p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">from flask import Flask, request, jsonify, make_response
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
+import jwt
+import datetime
+from functools import wraps</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>The first line in the code above imports packages such as <code>request</code> and <code>jsonify</code>. We will make use of <code>request</code> to keep track of the request-level data during a request and use <code>jsonify</code> to output responses in a <a href="https://www.json.org/" data-lasso-id="6994" data-wpel-link="external" target="_blank" rel="nofollow external noopener">JSON</a> format.</p>
+<p>On the next line, we imported SQLAlchemy&nbsp; from<code> flask_sqlalchemy</code> in order to integrate SQLAlchemy features into the flask.</p>
+<p>From <code>werkzeug.security</code>, we imported <code>generate_password_hash</code> to generate password hash for users and<code> check_password_hash</code> to check the user’s password when comparing password submitted by users with users’ passwords stored in the database.</p>
+<p>Finally, we imported <code>uuid</code> also known as universal unique identifiers to generate random id numbers for users.</p>
+<p>Still, inside the <code>app.py</code> file, implement the configuration settings for the library API using the code below inside the app.py file.</p>
+<p>Place the following code beneath the import statement.</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">app = Flask(__name__)
+
+app.config['SECRET_KEY']='Th1s1ss3cr3t'
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite://///home/michael/geekdemos/geekapp/library.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
+db = SQLAlchemy(app)</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Now create two models for the Users and Authors table as shown below. Copy and paste the code inside the app.py file.</p>
+<p>Place the code below right beneath this database setting&nbsp; <code>db = SQLAlchemy(app)</code></p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">class Users(db.Model):
+     id = db.Column(db.Integer, primary_key=True)
+     public_id = db.Column(db.Integer)
+     name = db.Column(db.String(50))
+     password = db.Column(db.String(50))
+     admin = db.Column(db.Boolean)</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">class Authors(db.Model):
+     id = db.Column(db.Integer, primary_key=True)
+     name = db.Column(db.String(50), unique=True, nullable=False))
+     book = db.Column(db.String(20), unique=True, nullable=False))
+     country = db.Column(db.String(50), nullable=False))
+     booker_prize = db.Column(db.Boolean)</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<h3><strong>Generate Users and Authors Tables </strong></h3>
+<p>On the terminal, type the following code inside the virtual environment to generate or create tables for both the Users and Authors tables as shown below</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">from app import db
+db.create_all()</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Afterward, open the <code>app.py</code> file inside the virtual environment and create another function.</p>
+<p>This function will generate tokens in order to allow only registered users to access and perform a set of&nbsp; API operations against the Authors table.</p>
+<p>Place this code beneath the database model for the Authors table</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">def token_required(f):
+   @wraps(f)
+   def decorator(*args, **kwargs):
+
+      token = None
+
+      if 'x-access-tokens' in request.headers:
+         token = request.headers['x-access-tokens']
+
+      if not token:
+         return jsonify({'message': 'a valid token is missing'})
+
+      try:
+         data = jwt.decode(token, app.config[SECRET_KEY])
+         current_user = Users.query.filter_by(public_id=data['public_id']).first()
+      except:
+         return jsonify({'message': 'token is invalid'})
+
+        return f(current_user, *args, **kwargs)
+   return decorator</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<h3><strong>Create routes for the users table</strong></h3>
+<p>Now let’s create a route to allow users to register for the Authors API via a username and password as shown below.</p>
+<p>Again open the <code>app.py</code> file inside the virtual environment and paste the following code beneath the function <code>token_required(f)</code></p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">@app.route('/register', methods=['GET', 'POST'])
+def signup_user():  
+ data = request.get_json()  
+
+ hashed_password = generate_password_hash(data['password'], method='sha256')
+ 
+ new_user = Users(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, admin=False) 
+ db.session.add(new_user)  
+ db.session.commit()    
+
+ return jsonify({'message': 'registered successfully'})</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Inside the virtual environment, create another route in the <code>app.py</code> file to allow registered users to login.</p>
+<p>When a user logs in, a random token is generated for the user to access the library API.</p>
+<p>Paste the code below beneath the previous route we created.</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">@app.route('/login', methods=['GET', 'POST'])  
+def login_user(): 
+ 
+  auth = request.authorization   
+
+  if not auth or not auth.username or not auth.password:  
+     return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})    
+
+  user = Users.query.filter_by(name=auth.username).first()   
+     
+  if check_password_hash(user.password, auth.password):  
+     token = jwt.encode({'public_id': user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=30)}, app.config['SECRET_KEY'])  
+     return jsonify({'token' : token.decode('UTF-8')}) 
+
+  return make_response('could not verify',  401, {'WWW.Authentication': 'Basic realm: "login required"'})</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Still, within the virtual environment, create another route in the <code>app.py</code> file to get or retrieve all registered users.</p>
+<p>This code checks for all registered users in the Users table and returns the final result in a JSON format.</p>
+<p>Paste the code below beneath the login route</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">@app.route('/users', methods=['GET'])
+def get_all_users():  
+   
+   users = Users.query.all() 
+
+   result = []   
+
+   for user in users:   
+       user_data = {}   
+       user_data['public_id'] = user.public_id  
+       user_data['name'] = user.name 
+       user_data['password'] = user.password
+       user_data['admin'] = user.admin 
+       
+       result.append(user_data)   
+
+   return jsonify({'users': result})</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<h3><strong>Create routes for the authors table&nbsp; </strong></h3>
+<p>Let’s create routes for the Authors table to allow users to retrieve all authors in the database, as well as delete authors.</p>
+<p>Only users with valid tokens can perform these API operations.</p>
+<p>Inside the app.py file, create a route for registered users to create new authors.</p>
+<p>Paste this code beneath the route which allows a user to retrieve all registered users.</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">@app.route('/author', methods=['POST', 'GET'])
+@token_required
+def create_author(current_user):
+   
+   data = request.get_json() 
+
+   new_authors = Authors(name=data['name'], country=data['country'], book=data['book'], booker_prize=True, user_id=current_user.id)  
+   db.session.add(new_authors)   
+   db.session.commit()   
+
+   return jsonify({'message' : 'new author created'})</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Next, create another route to allow a registered user with a valid token to retrieve all authors in the Authors table as shown below.</p>
+<p>Paste this code below the route which allows a user to create a new author.</p>
+<div class="code-toolbar"><pre class="line-numbers command-line language-markup"><code class=" language-markup">@app.route('/authors', methods=['POST', 'GET'])
+@token_required
+def get_authors(current_user):
+
+    authors = Authors.query.filter_by(user_id=current_user.id).all()
+
+    output = []
+    for author in authors:
+
+           author_data = {}
+           author_data['name'] = author.name
+           author_data['book'] = author.book
+           author_data['country'] = author.country
+           author_data['booker_prize'] = author.booker_prize
+           output.append(author_data)
+
+     return jsonify({'list_of_authors' : output})</code><code class=" language-markup"><span class="command-line-prompt"></span></code><code class=" language-markup"><span class="command-line-prompt"></span></code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Finally, still inside the <code>app.py</code> file, create a route to delete a specified author as shown below.</p>
+<p>Paste this code beneath the route which allows a user to retrieve a list of authors.</p>
+<div class="code-toolbar"><pre class="line-numbers language-markup"><code class=" language-markup">@app.route('/authors/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author_id</span><span class="token punctuation">&gt;</span></span>', methods=['DELETE'])
+@token_required
+def delete_author(current_user, author_id):  
+    author = Author.query.filter_by(id=author_id, user_id=current_user.id).first()   
+    if not author:   
+       return jsonify({'message': 'author does not exist'})   
+
+
+    db.session.delete(author)  
+    db.session.commit()   
+
+    return jsonify({'message': 'Author deleted'})
+
+
+if  __name__ == '__main__':  
+     app.run(debug=True)</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>Afterward, save and close the app.py file inside the virtual environment.</p>
+<h2>Testing the library API with Postman<strong><br>
+</strong></h2>
+<p>In this section, we will make use of a postman tool to send a request to the database services. If you don’t have a postman on your machine, you can find out how to download and install it <a href="https://www.getpostman.com/downloads/" data-lasso-id="6995" data-wpel-link="external" target="_blank" rel="nofollow external noopener">here</a>.</p>
+<p>Apart from the postman, we can make use of other tools such as <a href="https://curl.haxx.se/" data-lasso-id="6996" data-wpel-link="external" target="_blank" rel="nofollow external noopener">Curl</a> to send requests to the server.</p>
+<p>Open a new terminal and type the following:</p>
+<div class="code-toolbar"><pre class=" language-none"><code class="language- language-none">postman</code></pre><div class="toolbar"><div class="toolbar-item"><button type="button">Copy</button></div></div></div>
+<p>The command&nbsp; <code>postman</code> will cause your web browser to display the page below:</p>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33054" src="https://geekflare.com/wp-content/uploads/2019/12/58bea2e2b6ff79fefce972a745a9825b-457x270.png" alt="postman_signup" srcset="https://geekflare.com/wp-content/uploads/2019/12/58bea2e2b6ff79fefce972a745a9825b-457x270.png 457w, https://geekflare.com/wp-content/uploads/2019/12/58bea2e2b6ff79fefce972a745a9825b.png 1000w" sizes="(max-width: 457px) 100vw, 457px" width="457" height="270"></p>
+<p>You can decide to sign up and create&nbsp; a free account but we will skip and get direct access to the app to test the library API as shown below:</p>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33055" src="https://geekflare.com/wp-content/uploads/2019/12/testapi-605x270.png" alt="Test the library api" srcset="https://geekflare.com/wp-content/uploads/2019/12/testapi-605x270.png 605w, https://geekflare.com/wp-content/uploads/2019/12/testapi.png 1000w" sizes="(max-width: 605px) 100vw, 605px" width="605" height="270"></p>
+<p>&nbsp;</p>
+<p>In this section, we will allow a user to register for the library API by providing a username and a unique password in a JSON format using the POST method using the steps below:</p>
+<ul>
+<li>Click on the tab labeled Body</li>
+<li>Then select the raw button and choose the JSON format</li>
+<li>enter a username and password to register as shown in the screenshot</li>
+<li>Beside the send button, insert the following URL http://127.0.0.1/register</li>
+<li>Finally, change the method to POST and press the send button.</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33081" src="https://geekflare.com/wp-content/uploads/2019/12/apiregister-840x251.png" alt="a user registers for an api" srcset="https://geekflare.com/wp-content/uploads/2019/12/apiregister-840x251.png 840w, https://geekflare.com/wp-content/uploads/2019/12/apiregister.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="251"></p>
+<p>It will display the following output as shown below:</p>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33146" src="https://geekflare.com/wp-content/uploads/2019/12/registeredsuccess-840x208.png" alt="registeredsuccess-840x208" srcset="https://geekflare.com/wp-content/uploads/2019/12/registeredsuccess-840x208.png 840w, https://geekflare.com/wp-content/uploads/2019/12/registeredsuccess.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="208"></p>
+<p>Now we have successfully registered a user. Let’s go-ahead to allow the user who just registered to login in order to generate a temporary random token to access the Authors table using the following steps:</p>
+<ul>
+<li>&nbsp;Click on the authorization tab.</li>
+<li>Under the type section, select basic authentication.</li>
+<li>Then fill the username and password form with the username and password you registered with previously.</li>
+<li>Finally, press the send button to login and generate a random token.</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33164" src="https://geekflare.com/wp-content/uploads/2019/12/userlogin-1-840x228.png" alt="userlogin-1-840x228" srcset="https://geekflare.com/wp-content/uploads/2019/12/userlogin-1-840x228.png 840w, https://geekflare.com/wp-content/uploads/2019/12/userlogin-1.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="228"></p>
+<p>Once the user login successfully, a random token is generated for the user as shown in the screenshot.</p>
+<p>We will make use of the generated random token to access the Authors table.</p>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33165" src="https://geekflare.com/wp-content/uploads/2019/12/usertoken-840x175.png" alt="usertoken-840x175" srcset="https://geekflare.com/wp-content/uploads/2019/12/usertoken-840x175.png 840w, https://geekflare.com/wp-content/uploads/2019/12/usertoken.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="175"></p>
+<p>In this section, we will add an author’s information to the Authors table via the POST method using the following steps:</p>
+<ul>
+<li>Click on the headers tab</li>
+<li>Include the following HTTP headers shown in the screenshot</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33177" src="https://geekflare.com/wp-content/uploads/2019/12/createuser-840x248.png" alt="createuser-840x248" srcset="https://geekflare.com/wp-content/uploads/2019/12/createuser-840x248.png 840w, https://geekflare.com/wp-content/uploads/2019/12/createuser.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="248"></p>
+<ul>
+<li>Next, click on the body tab and enter the details of the new author</li>
+<li>Then press the send button to add the author’s details to the Author’s table</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33855" src="https://geekflare.com/wp-content/uploads/2020/01/createauthor-840x223.png" alt="createauthor-840x223" srcset="https://geekflare.com/wp-content/uploads/2020/01/createauthor-840x223.png 840w, https://geekflare.com/wp-content/uploads/2020/01/createauthor.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="223"></p>
+<p>You can also retrieve authors’ information in the Authors table via the following:</p>
+<ul>
+<li>Make sure your generated token is in the headers section. if it is not there, you need to fill it with your token.</li>
+<li>Beside the send button, enter this URL <code>http://127.0.0.1/authors</code></li>
+<li>Then change the HTTP method to GET and press the send button to retrieve the authors details.</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33179" src="https://geekflare.com/wp-content/uploads/2019/12/getauthors-840x200.png" alt="getauthors-840x200" srcset="https://geekflare.com/wp-content/uploads/2019/12/getauthors-840x200.png 840w, https://geekflare.com/wp-content/uploads/2019/12/getauthors.png 960w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="200"></p>
+<p>Finally, you can delete the author(s) in the Authors table via the <code>DELETE</code> method using the following steps:</p>
+<ul>
+<li>Make sure your token is still in the headers section. You can check the headers tab to ensure the necessary information is in place.</li>
+<li>Beside the send button, enter this URL <code>http://127.0.0.1/sam</code></li>
+<li>Then press the send button to delete the user you specified.</li>
+</ul>
+<p><img loading="lazy" class="alignnone size-medium wp-image-33180" src="https://geekflare.com/wp-content/uploads/2019/12/deleteusers-840x228.png" alt="deleteusers-840x228" srcset="https://geekflare.com/wp-content/uploads/2019/12/deleteusers-840x228.png 840w, https://geekflare.com/wp-content/uploads/2019/12/deleteusers.png 1000w" sizes="(max-width: 840px) 100vw, 840px" width="840" height="228"></p>
+<p>You can find the complete source code on <a href="https://github.com/Rev0kz/Flask-API-Token" data-lasso-id="6997" data-wpel-link="external" target="_blank" rel="nofollow external noopener">Github.</a>&nbsp; You can clone it and check it out on your machine.</p>
+</div>
+
+
+
+
+
+
+
+</div>
+
+<li id="text-46" class="widget widget_text"> <div class="textwidget"><div class="bg-lgray alignfull">
+
+</div>
+</div>
+</li>
+
+
+
+
+
+
+
+</body></html>
